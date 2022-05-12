@@ -39,4 +39,6 @@
 	<% else %>
 	<h2>No items found</h2>
 	<% end %>
+
+	<%= link_to "Delete cart", cart_path(id: @cart.id), method: :delete %>
 </div>

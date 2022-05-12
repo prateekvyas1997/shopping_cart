@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'carts#index'
 
-  resources :carts, only: [ :index, :show] do
+  resources :carts, only: [ :index, :destroy] do
     resources :items, only: [:index, :destroy] do
       member do
         post :change_quantity

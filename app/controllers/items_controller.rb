@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
+  before_action :set_cart, only: [:index]
   before_action :set_item, only: [:destroy, :change_quantity]
 
   def index
-    @items = Cart.find(params[:cart_id]).items
+    @items = @cart.items
   end
 
   def destroy
@@ -22,6 +23,10 @@ class ItemsController < ApplicationController
   end
 
   private 
+
+  def set_cart
+    @cart = Cart.find(params[:cart_id])
+  end
 
   def set_item
     @item = Item.find(params[:id])

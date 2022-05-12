@@ -3,6 +3,8 @@ class CartsController < ApplicationController
     @carts = Cart.all
   end
 
-  def show
+  def destroy
+    Cart.find(params[:id]).destroy
+    redirect_to :carts
   end
 end
