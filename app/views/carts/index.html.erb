@@ -1,0 +1,7 @@
+<div class="container">
+	<h1>My cart</h1>
+	<% @carts.each do |cart| %>
+		<br>
+		<%= link_to "#{cart.number}", cart_items_path(cart) %>
+	<% end %>
+</div>

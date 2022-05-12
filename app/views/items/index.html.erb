@@ -1,0 +1,42 @@
+<div class="container">
+	<% if @items.count > 0 %>
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">id</th>
+		      <th scope="col">Item</th>
+		      <th scope="col">Image</th>
+		      <th scope="col">Quantity</th>
+		      <th scope="col">Price</th>
+		      <th scope="col">Sub Total</th>
+		      <th scope="col">Action</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<% @items.each do |item| %>
+			    <tr>
+			      <th scope="row"><%= item.id %></th>
+			      <td><%= item.title %></td>
+			      <td><%= image_tag item.img, style: "height: 50px" %>
+	</td>
+			      <td>
+			      	<%= item.quantity %>
+
+			      	<br>
+			      	<%= link_to "Increase quantity", change_quantity_cart_item_path(item.cart, item, increase: true), method: :post %> |
+			      	<%= link_to "Decrease quantity", change_quantity_cart_item_path(item.cart, item, increase: false), method: :post %>
+			      </td>
+			      <td><%= item.price %></td>
+			      <td><%= item.sub_total %></td>
+			      <td>
+			      	<%= link_to "Delete", cart_item_path(id: item.id), method: :delete %>
+			      </td>
+			    </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+		<label>Total: </label> <%= @items.total %>
+	<% else %>
+	<h2>No items found</h2>
+	<% end %>
+</div>
